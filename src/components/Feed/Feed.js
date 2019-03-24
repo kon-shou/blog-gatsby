@@ -20,8 +20,6 @@ const Feed = ({ edge }) => {
     },
   } = edge;
 
-  console.log(description);
-
   return (
     <div className={styles['feed__item']} key={slug}>
       <div className={styles['feed__item-meta']}>
