@@ -27,7 +27,6 @@ module.exports = {
     photo: './static/image_me.jpg',
     bio: 'web developer',
     contacts: {
-      email: 's.kondo1015@gmail.com',
       twitter: 'korn_shonery',
       github: 'kon-shou',
       rss: 'rss.xml',
