@@ -22,6 +22,9 @@ const getIcon = (name) => {
     case 'rss':
       icon = ICONS.RSS;
       break;
+    case 'speakerdeck':
+      icon = ICONS.SPEAKERDECK;
+      break;
     default:
       icon = {};
       break;

@@ -11,7 +11,10 @@ const Post = ({ post }) => {
   const {
     tags,
     title,
-    date
+    date,
+    image: {
+      children: [{ fluid }],
+    },
   } = post.frontmatter;
 
   const { html } = post;
@@ -19,10 +22,12 @@ const Post = ({ post }) => {
 
   return (
     <div className={styles['post']}>
-      <Link className={styles['post__home-button']} to="/">All Articles</Link>
+      <Link className={styles['post__home-button']} to="/">
+        ブログ記事一覧
+      </Link>
 
       <div className={styles['post__content']}>
-        <Content body={html} title={title} />
+        <Content body={html} title={title} fluid={fluid} />
       </div>
 
       <div className={styles['post__footer']}>
@@ -32,7 +37,10 @@ const Post = ({ post }) => {
       </div>
 
       <div className={styles['post__comments']}>
-        <Comments postSlug={post.fields.slug} postTitle={post.frontmatter.title} />
+        <Comments
+          postSlug={post.fields.slug}
+          postTitle={post.frontmatter.title}
+        />
       </div>
     </div>
   );

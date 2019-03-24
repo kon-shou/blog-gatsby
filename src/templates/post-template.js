@@ -4,17 +4,15 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 
 const PostTemplate = ({ data }) => {
-  const {
-    title: siteTitle,
-    subtitle: siteSubtitle
-  } = data.site.siteMetadata;
+  const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
 
   const {
     title: postTitle,
-    description: postDescription
+    description: postDescription,
   } = data.markdownRemark.frontmatter;
 
-  const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
+  const metaDescription =
+    postDescription !== null ? postDescription : siteSubtitle;
 
   return (
     <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
@@ -48,9 +46,17 @@ export const query = graphql`
       }
       frontmatter {
         date
-        description
         tags
         title
+        image {
+          children {
+            ... on ImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }

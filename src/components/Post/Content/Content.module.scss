@@ -18,6 +18,11 @@
     @include margin-bottom(0)
   }
 
+  &__hero {
+    max-width: $layout-post-width;
+    margin: 2rem auto 1rem;
+  }
+
   &__body {
     & figure {
       @include margin-bottom(1);

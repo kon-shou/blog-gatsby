@@ -1,7 +1,7 @@
 @import '../../../assets/scss/variables';
 @import '../../../assets/scss/mixins';
 
-.contacts {
+@mixin basic-contacts() {
   @include margin-bottom(1);
 
   &__list {
@@ -11,7 +11,7 @@
     flex-shrink: 0;
     list-style: none;
     padding: 0;
-    margin: 10px -3px;
+    margin: 0;
     width: 140px;
 
     &-item {
@@ -32,16 +32,24 @@
         border: 0;
         display: flex;
         color: $color-base;
-  
+
         &:hover,
         &:focus {
           color: $color-primary;
         }
-
       }
-
     }
-
   }
+}
 
+.contacts {
+  width: 50%;
+  @include basic-contacts();
+}
+
+@include breakpoint-sm {
+  .contacts {
+    width: inherit;
+    @include basic-contacts();
+  }
 }

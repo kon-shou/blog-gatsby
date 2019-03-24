@@ -17,6 +17,12 @@ const getContactHref = (name, contact) => {
     case 'email':
       href = `mailto:${contact}`;
       break;
+    case 'rss':
+      href = 'https://blog.kon-shou.com/rss.xml';
+      break;
+    case 'speakerdeck':
+      href = `https://speakerdeck.com/${contact}`;
+      break;
     default:
       href = contact;
       break;

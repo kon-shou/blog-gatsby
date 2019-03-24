@@ -1,7 +1,7 @@
 @import '../../../assets/scss/variables';
 @import '../../../assets/scss/mixins';
 
-.menu {
+@mixin basic-menu() {
   @include margin-bottom(1);
 
   &__list {
@@ -29,11 +29,19 @@
           color: $color-base;
           border-bottom: 1px solid $color-base;
         }
-
       }
-
     }
-
   }
+}
 
+.menu {
+  width: 50%;
+  @include basic-menu();
+}
+
+@include breakpoint-sm {
+  width: inherit;
+  .menu {
+    @include basic-menu();
+  }
 }

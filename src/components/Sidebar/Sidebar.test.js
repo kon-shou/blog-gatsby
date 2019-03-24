@@ -18,23 +18,23 @@ describe('Sidebar', () => {
                 vkontakte: '#',
                 github: '#',
                 rss: '#',
-                telegram: '#'
-              }
+                telegram: '#',
+              },
             },
             copyright: 'copyright',
             menu: [
               {
                 label: 'Item 0',
-                path: '/#0/'
+                path: '/#0/',
               },
               {
                 label: 'Item 1',
-                path: '/#1/'
-              }
-            ]
-          }
-        }
-      }
+                path: '/#1/',
+              },
+            ],
+          },
+        },
+      },
     };
 
     const tree = renderer.create(<Sidebar {...props} />).toJSON();

@@ -7,25 +7,35 @@ import Menu from './Menu';
 import styles from './Sidebar.module.scss';
 
 export const PureSidebar = ({ data, isIndex }) => {
-  const {
-    author,
-    copyright,
-    menu
-  } = data.site.siteMetadata;
+  const { author, copyright, menu, title, subtitle } = data.site.siteMetadata;
+  const { fixed } = data.file.childImageSharp;
 
   return (
     <div className={styles['sidebar']}>
       <div className={styles['sidebar__inner']}>
-        <Author author={author} isIndex={isIndex} />
-        <Menu menu={menu} />
-        <Contacts contacts={author.contacts} />
+        <Author
+          title={title}
+          subtitle={subtitle}
+          fixed={fixed}
+          isIndex={isIndex}
+        />
+        <div className={styles['sidebar__menu-contacts']}>
+          <Menu
+            className={styles['sidebar__menu-contacts__menu']}
+            menu={menu}
+          />
+          <Contacts
+            className={styles['sidebar__menu-contacts__contacts']}
+            contacts={author.contacts}
+          />
+        </div>
         <Copyright copyright={copyright} />
       </div>
     </div>
   );
 };
 
-export const Sidebar = (props) => (
+export const Sidebar = props => (
   <StaticQuery
     query={graphql`
       query SidebarQuery {
@@ -40,22 +50,27 @@ export const Sidebar = (props) => (
             }
             author {
               name
-              photo
               bio
-              contacts {       
+              contacts {
                 twitter
-                telegram
                 github
                 email
                 rss
-                vkontakte
+                speakerdeck
               }
+            }
+          }
+        }
+        file(relativePath: { eq: "image_me.jpg" }) {
+          childImageSharp {
+            fixed(width: 75, height: 75) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
       }
     `}
-    render={(data) => <PureSidebar {...props} data={data}/>}
+    render={data => <PureSidebar {...props} data={data} />}
   />
 );
 
