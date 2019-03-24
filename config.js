@@ -1,38 +1,37 @@
 'use strict';
 
 module.exports = {
-  url: 'https://lumen.netlify.com',
-  title: 'Blog by John Doe',
-  subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
-  copyright: '© All rights reserved.',
+  url: 'https://blog.kon-shou.com',
+  title: "kon-shou's blog",
+  subtitle: 'web系の技術について紹介します',
+  copyright: '© 2019 blog.kon-shou.com',
   disqusShortname: '',
-  postsPerPage: 4,
-  googleAnalyticsId: 'UA-73379983-2',
+  postsPerPage: 10,
+  googleAnalyticsId: '',
   menu: [
     {
-      label: 'Articles',
-      path: '/'
+      label: 'タグ一覧',
+      path: '/tags',
     },
-    {
-      label: 'About me',
-      path: '/pages/about'
-    },
-    {
-      label: 'Contact me',
-      path: '/pages/contacts'
-    }
+    // {
+    //   label: '経歴',
+    //   path: '/career',
+    // },
+    // {
+    //   label: '制作物',
+    //   path: '/pages/products',
+    // },
   ],
   author: {
-    name: 'John Doe',
-    photo: '/photo.jpg',
-    bio: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+    name: 'kon-shou',
+    photo: './static/image_me.jpg',
+    bio: 'web developer',
     contacts: {
-      email: '#',
-      telegram: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#',
-      vkontakte: '#'
-    }
-  }
+      email: 's.kondo1015@gmail.com',
+      twitter: 'korn_shonery',
+      github: 'kon-shou',
+      rss: 'rss.xml',
+      speakerdeck: 'kon_shou',
+    },
+  },
 };
