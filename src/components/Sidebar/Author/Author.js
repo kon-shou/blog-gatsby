@@ -6,7 +6,7 @@ import styles from './Author.module.scss';
 const Author = ({ title, subtitle, isIndex, fixed }) => (
   <div className={styles['author']}>
     <Link to="/">
-      <Img className={styles['author__photo']} fixed={fixed} />
+      <Img imgStyle={{ borderRadius: '50%' }} fixed={fixed} />
     </Link>
 
     {isIndex ? (
