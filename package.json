@@ -37,6 +37,7 @@
     "disqus"
   ],
   "dependencies": {
+    "@raae/gatsby-remark-oembed": "^0.0.5",
     "bluebird": "^3.5.2",
     "classnames": "^2.2.6",
     "codecov": "^3.1.0",
