@@ -167,3 +167,16 @@ figcaption {
   }
 
 }
+
+.gatsby-code-title {
+  background: #f3e3b9;
+  color: #b38383;
+  margin-bottom: -0.65em;
+  padding: 0.7rem 0.5rem;
+  font-size: 0.8em;
+  line-height: 0.2;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  font-weight: 600;
+  border-radius: 5px 5px 0 0;
+  box-sizing:border-box
+}
