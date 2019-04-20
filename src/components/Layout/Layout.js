@@ -12,7 +12,7 @@ const PureLayout = ({
   image,
   ogpTitle,
 }) => {
-  const { title: siteTitle, url: blogUrl, twitter } = data.site.siteMetadata;
+  const { title: siteTitle, url: blogUrl, author } = data.site.siteMetadata;
 
   const ogpImage = blogUrl + image;
 
@@ -31,7 +31,7 @@ const PureLayout = ({
         <meta property="og:site_name" content={siteTitle} />
         <meta property="og:image" content={ogpImage} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content={`@${twitter}`} />
+        <meta name="twitter:site" content={`@${author.contacts.twitter}`} />
       </Helmet>
       {children}
     </div>
