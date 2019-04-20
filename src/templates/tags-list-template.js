@@ -6,18 +6,22 @@ import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
 
 const TagsListTemplate = ({ data }) => {
-  const {
-    title,
-    subtitle
-  } = data.site.siteMetadata;
+  const { title, subtitle } = data.site.siteMetadata;
   const { group } = data.allMarkdownRemark;
+  const { publicURL } = data.file;
 
   return (
-    <Layout title={`Tags - ${title}`} description={subtitle}>
+    <Layout
+      title={`Tags - ${title}`}
+      ogpTitle={title}
+      description={subtitle}
+      type="website"
+      image={publicURL}
+    >
       <Sidebar />
       <Page title="Tags">
         <ul>
-          {group.map((tag) => (
+          {group.map(tag => (
             <li key={tag.fieldValue}>
               <Link to={`/tag/${kebabCase(tag.fieldValue)}/`}>
                 {tag.fieldValue} ({tag.totalCount})
@@ -34,9 +38,12 @@ export const query = graphql`
   query TagsListQuery {
     site {
       siteMetadata {
-        title,
+        title
         subtitle
       }
+    }
+    file(relativePath: { eq: "site-logo.png" }) {
+      publicURL
     }
     allMarkdownRemark(
       filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }

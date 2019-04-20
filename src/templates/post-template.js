@@ -9,13 +9,20 @@ const PostTemplate = ({ data }) => {
   const {
     title: postTitle,
     description: postDescription,
+    image,
   } = data.markdownRemark.frontmatter;
 
   const metaDescription =
     postDescription !== null ? postDescription : siteSubtitle;
 
   return (
-    <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
+    <Layout
+      title={`${postTitle} - ${siteTitle}`}
+      ogpTitle={postTitle}
+      description={metaDescription}
+      type="article"
+      image={image.publicURL}
+    >
       <Post post={data.markdownRemark} />
     </Layout>
   );
@@ -48,6 +55,7 @@ export const query = graphql`
         date
         tags
         title
+        description
         image {
           children {
             ... on ImageSharp {
@@ -56,6 +64,7 @@ export const query = graphql`
               }
             }
           }
+          publicURL
         }
       }
     }

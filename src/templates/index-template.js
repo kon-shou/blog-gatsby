@@ -9,6 +9,8 @@ import Pagination from '../components/Pagination';
 const IndexTemplate = ({ data, pageContext }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
 
+  const { publicURL } = data.file;
+
   const {
     currentPage,
     hasNextPage,
@@ -22,7 +24,13 @@ const IndexTemplate = ({ data, pageContext }) => {
     currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
 
   return (
-    <Layout title={pageTitle} description={siteSubtitle}>
+    <Layout
+      title={pageTitle}
+      ogpTitle={pageTitle}
+      description={siteSubtitle}
+      type="website"
+      image={publicURL}
+    >
       <Sidebar isIndex />
       <Page>
         {edges.map((edge, index) => (
@@ -46,6 +54,9 @@ export const query = graphql`
         title
         subtitle
       }
+    }
+    file(relativePath: { eq: "site-logo.png" }) {
+      publicURL
     }
     allMarkdownRemark(
       limit: $postsLimit

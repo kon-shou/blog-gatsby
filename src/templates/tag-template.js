@@ -9,6 +9,8 @@ import Pagination from '../components/Pagination';
 const TagTemplate = ({ data, pageContext }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
 
+  const { publicURL } = data.file;
+
   const {
     tag,
     currentPage,
@@ -25,7 +27,13 @@ const TagTemplate = ({ data, pageContext }) => {
       : `All Posts tagged as "${tag}" - ${siteTitle}`;
 
   return (
-    <Layout title={pageTitle} description={siteSubtitle}>
+    <Layout
+      title={pageTitle}
+      ogpTitle={siteTitle}
+      description={siteSubtitle}
+      type="website"
+      image={publicURL}
+    >
       <Sidebar />
       <Page title={tag}>
         {edges.map((edge, index) => (
@@ -49,6 +57,9 @@ export const query = graphql`
         title
         subtitle
       }
+    }
+    file(relativePath: { eq: "site-logo.png" }) {
+      publicURL
     }
     allMarkdownRemark(
       limit: $postsLimit

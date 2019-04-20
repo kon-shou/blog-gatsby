@@ -7,6 +7,8 @@ import Page from '../components/Page';
 const PageTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
 
+  const { publicURL } = data.file;
+
   const {
     title: pageTitle,
     description: pageDescription,
@@ -18,7 +20,13 @@ const PageTemplate = ({ data }) => {
     pageDescription !== null ? pageDescription : siteSubtitle;
 
   return (
-    <Layout title={`${pageTitle} - ${siteTitle}`} description={metaDescription}>
+    <Layout
+      title={`${pageTitle} - ${siteTitle}`}
+      ogpTitle={pageTitle}
+      description={metaDescription}
+      type="article"
+      image={publicURL}
+    >
       <Sidebar />
       <Page title={pageTitle}>
         <div dangerouslySetInnerHTML={{ __html: pageBody }} />
@@ -34,6 +42,9 @@ export const query = graphql`
         title
         subtitle
       }
+    }
+    file(relativePath: { eq: "site-logo.png" }) {
+      publicURL
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
