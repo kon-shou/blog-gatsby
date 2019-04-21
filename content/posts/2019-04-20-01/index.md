@@ -7,6 +7,7 @@ draft: false
 tags:
   - "AWS"
   - "開発ツール"
+  - "インフラ"
 image: "./2019-04-20-01.png"
 ---
 
