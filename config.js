@@ -13,10 +13,10 @@ module.exports = {
       label: 'タグ一覧',
       path: '/tags',
     },
-    // {
-    //   label: '経歴',
-    //   path: '/career',
-    // },
+    {
+      label: '経歴',
+      path: '/career',
+    },
     // {
     //   label: '制作物',
     //   path: '/pages/products',

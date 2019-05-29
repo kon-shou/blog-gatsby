@@ -1,0 +1,205 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.box {
+  margin: 0 7%;
+  overflow: hidden;
+  padding: 10px 0 40px 60px;
+
+  ul {
+    list-style-type: none;
+    margin: 0 0 100px 0;
+    padding: 0;
+    position: relative;
+    transition: all 0.5s linear;
+    top: 0;
+
+    &:last-of-type {
+      top: 40px;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 100%;
+      border: 1px dashed #222222;
+      position: absolute;
+      top: 0;
+      left: 30px;
+    }
+
+    li {
+      &.start {
+        margin: 0 60px 60px 60px;
+        position: relative;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.3);
+        color: #222222;
+        border-radius: 10px;
+        line-height: 20px;
+        width: 65%;
+
+        .point {
+          content: '';
+          display: block;
+          width: 0;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: -30px;
+
+          &:after {
+            top: 35%;
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #222222;
+            border: 2px solid #222222;
+            position: absolute;
+            left: -5.8px;
+          }
+
+          &__title {
+            top: 10%;
+            font-weight: 800;
+          }
+
+          &__time {
+            top: 30%;
+            position: absolute;
+            left: -100px;
+            color: #222222;
+            font-size: 80%;
+            font-weight: bold;
+          }
+        }
+      }
+
+      &.middle {
+        margin: 60px 30px 60px 60px;
+        position: relative;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.3);
+        color: #222222;
+        border-radius: 10px;
+        line-height: 20px;
+        width: 65%;
+
+        .interval {
+          content: '';
+          display: block;
+          width: 0;
+          height: 100%;
+          border: 1px solid #222222;
+          position: absolute;
+          top: 0;
+          left: -30px;
+
+          &:before,
+
+          &:after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #222222;
+            border: 2px solid #222222;
+            position: absolute;
+            left: -6.2px;
+          }
+          &:before {
+            top: -10px;
+          }
+          &:after {
+            top: 95%;
+          }
+        }
+      }
+
+      &.middle__point {
+        margin: 30px 30px 30px 60px;
+        position: relative;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.3);
+        color: #222222;
+        border-radius: 10px;
+        line-height: 20px;
+        width: 65%;
+
+        .point {
+          content: '';
+          display: block;
+          width: 0;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: -30px;
+
+          &:after {
+            top: 35%;
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #222222;
+            border: 2px solid #222222;
+            position: absolute;
+            left: -5.8px;
+          }
+
+          &__title {
+            top: 10%;
+            font-weight: 800;
+          }
+
+          &__time {
+            top: 30%;
+            position: absolute;
+            left: -100px;
+            color: #222222;
+            font-size: 80%;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .info:first-letter {
+    text-transform: capitalize;
+    line-height: 1.7;
+  }
+
+  .name {
+    margin-top: 10px;
+    text-transform: capitalize;
+    font-style: italic;
+    text-align: right;
+    margin-right: 20px;
+  }
+
+  .time span {
+    position: absolute;
+    left: -100px;
+    color: #222222;
+    font-size: 80%;
+    font-weight: bold;
+    &:first-child {
+      top: -16px;
+    }
+    &:last-child {
+      top: 94%;
+    }
+  }
+}
