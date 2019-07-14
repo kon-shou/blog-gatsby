@@ -23,6 +23,9 @@ const getContactHref = (name, contact) => {
     case 'speakerdeck':
       href = `https://speakerdeck.com/${contact}`;
       break;
+    case 'qiita':
+      href = `https://qiita.com/${contact}`;
+      break;
     default:
       href = contact;
       break;

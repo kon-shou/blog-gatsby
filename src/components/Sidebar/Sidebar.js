@@ -54,8 +54,9 @@ export const Sidebar = props => (
               contacts {
                 twitter
                 github
-                rss
                 speakerdeck
+                qiita
+                rss
               }
             }
           }

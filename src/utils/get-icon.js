@@ -25,6 +25,9 @@ const getIcon = (name) => {
     case 'speakerdeck':
       icon = ICONS.SPEAKERDECK;
       break;
+    case 'qiita':
+      icon = ICONS.QIITA;
+      break;
     default:
       icon = {};
       break;

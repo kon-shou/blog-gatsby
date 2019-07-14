@@ -29,8 +29,9 @@ module.exports = {
     contacts: {
       twitter: 'korn_shonery',
       github: 'kon-shou',
-      rss: 'rss.xml',
+      qiita: 'kon_shou',
       speakerdeck: 'kon_shou',
+      rss: 'rss.xml',
     },
   },
 };
