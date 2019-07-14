@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+@import "variables";
+@import "mixins";
+@import "base";
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.2em;
+  border-radius: 0.2em;
+  white-space: normal;
+  background-color: rgba(27,31,35,.05);
+  color: #24292e;
+}
