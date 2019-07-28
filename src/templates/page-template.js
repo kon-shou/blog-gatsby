@@ -9,15 +9,11 @@ const PageTemplate = ({ data }) => {
 
   const { publicURL } = data.file;
 
-  const {
-    title: pageTitle,
-    description: pageDescription,
-  } = data.markdownRemark.frontmatter;
+  const { title: pageTitle, description: pageDescription } = data.markdownRemark.frontmatter;
 
   const { html: pageBody } = data.markdownRemark;
 
-  const metaDescription =
-    pageDescription !== null ? pageDescription : siteSubtitle;
+  const metaDescription = pageDescription !== null ? pageDescription : siteSubtitle;
 
   return (
     <Layout
@@ -34,28 +30,5 @@ const PageTemplate = ({ data }) => {
     </Layout>
   );
 };
-
-export const query = graphql`
-  query PageBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        subtitle
-      }
-    }
-    file(relativePath: { eq: "site-logo.png" }) {
-      publicURL
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      html
-      frontmatter {
-        title
-        date
-        description
-      }
-    }
-  }
-`;
 
 export default PageTemplate;
