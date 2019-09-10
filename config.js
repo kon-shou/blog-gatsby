@@ -7,7 +7,7 @@ module.exports = {
   copyright: '© 2019 blog.kon-shou.com',
   disqusShortname: '',
   postsPerPage: 10,
-  googleAnalyticsId: '',
+  googleAnalyticsId: 'UA-147528081-1',
   menu: [
     {
       label: 'タグ一覧',

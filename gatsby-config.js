@@ -167,7 +167,10 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
-      options: { trackingId: siteConfig.googleAnalyticsId },
+      options: {
+        trackingId: siteConfig.googleAnalyticsId,
+        head: true,
+      },
     },
     {
       resolve: 'gatsby-plugin-sitemap',
