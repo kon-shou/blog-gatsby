@@ -1,5 +1,5 @@
 ---
-title: LeetCode 楽しすぎワロタ
+title: LeetCodeが面白い
 description: LeetCodeという、技術面談とかで出るようなプログラミングの問題をまとめたサービスの紹介です
 date: "2019-08-13"
 template: "post"
