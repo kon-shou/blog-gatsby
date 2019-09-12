@@ -46,7 +46,8 @@
     }
 
     & a {
-      text-decoration: underline
+      text-decoration: underline;
+      word-wrap: break-word;
     }
 
     & * {
