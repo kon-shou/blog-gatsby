@@ -4,16 +4,13 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 
 const PostTemplate = ({ data }) => {
-  const { title: siteTitle, subtitle: siteSubtitle } = data.site.siteMetadata;
+  const { title: siteTitle, subtitle: siteSubtitle, url: siteUrl } = data.site.siteMetadata;
 
-  const {
-    title: postTitle,
-    description: postDescription,
-    image,
-  } = data.markdownRemark.frontmatter;
+  const { title: postTitle, description: postDescription, image } = data.markdownRemark.frontmatter;
 
-  const metaDescription =
-    postDescription !== null ? postDescription : siteSubtitle;
+  const { slug } = data.markdownRemark.fields;
+
+  const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
 
   return (
     <Layout
@@ -23,7 +20,7 @@ const PostTemplate = ({ data }) => {
       type="article"
       image={image.publicURL}
     >
-      <Post post={data.markdownRemark} />
+      <Post post={data.markdownRemark} postUrl={siteUrl + slug} />
     </Layout>
   );
 };

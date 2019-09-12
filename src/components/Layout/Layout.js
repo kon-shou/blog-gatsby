@@ -3,15 +3,7 @@ import Helmet from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
 import styles from './Layout.module.scss';
 
-const PureLayout = ({
-  data,
-  children,
-  title,
-  description,
-  type,
-  image,
-  ogpTitle,
-}) => {
+const PureLayout = ({ data, children, title, description, type, image, ogpTitle }) => {
   const { title: siteTitle, url: blogUrl, author } = data.site.siteMetadata;
 
   const ogpImage = blogUrl + image;
@@ -32,6 +24,13 @@ const PureLayout = ({
         <meta property="og:image" content={ogpImage} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content={`@${author.contacts.twitter}`} />
+
+        <script
+          type="text/javascript"
+          src="https://b.st-hatena.com/js/bookmark_button.js"
+          charSet="utf-8"
+          async="async"
+        />
       </Helmet>
       {children}
     </div>
