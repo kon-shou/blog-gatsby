@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
 import styles from './Layout.module.scss';
 
 const PureLayout = ({ data, children, title, description, type, image, ogpTitle }) => {
+  useEffect(() => {
+    if (window.iframely) {
+      window.iframely.load();
+    }
+  });
+
   const { title: siteTitle, url: blogUrl, author } = data.site.siteMetadata;
 
   const ogpImage = blogUrl + image;
@@ -31,6 +37,8 @@ const PureLayout = ({ data, children, title, description, type, image, ogpTitle 
           charSet="utf-8"
           async="async"
         />
+
+        <script type="text/javascript" src="https://cdn.iframe.ly/embed.js" charSet="utf-8"/>
       </Helmet>
       {children}
     </div>
