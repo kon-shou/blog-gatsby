@@ -64,13 +64,7 @@ export const query = graphql`
     allMarkdownRemark(
       limit: $postsLimit
       skip: $postsOffset
-      filter: {
-        frontmatter: {
-          tags: { in: [$tag] }
-          template: { eq: "post" }
-          draft: { ne: true }
-        }
-      }
+      filter: { frontmatter: { tags: { in: [$tag] }, template: { eq: "post" }, draft: { ne: true } } }
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
@@ -87,7 +81,7 @@ export const query = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
+                  fluid {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
