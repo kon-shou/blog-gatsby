@@ -44,7 +44,7 @@ const Feed = ({ edge }) => {
           {title}
         </Link>
       </h2>
-      <Link to={slug}>
+      <Link className={styles['feed__item-img-a']} to={slug}>
         <Img className={styles['feed__item-img']} fluid={fluid} />
       </Link>
       <p className={styles['feed__item-description']}>{description}</p>

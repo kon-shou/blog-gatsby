@@ -78,7 +78,7 @@ export const query = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  fluid(maxWidth: 800, maxHeight: 360) {
+                  fluid {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
