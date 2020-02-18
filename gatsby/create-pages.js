@@ -59,6 +59,12 @@ const createPages = async ({ graphql, actions }) => {
         component: path.resolve('./src/templates/post-template.js'),
         context: { slug: edge.node.fields.slug },
       });
+      // TODO 2019/04くらいには削除する
+      createPage({
+        path: `${edge.node.fields.slug.slice(0, -1)}_001/`,
+        component: path.resolve('./src/templates/post-template.js'),
+        context: { slug: edge.node.fields.slug },
+      });
     }
   });
 
