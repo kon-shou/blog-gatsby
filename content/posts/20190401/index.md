@@ -6,7 +6,6 @@ template: "post"
 draft: false
 tags:
   - "Serverless"
-  - "入門記事"
 image: "./2019-04-17-001.png"
 ---
 

@@ -7,7 +7,6 @@ draft: false
 tags:
   - "JavaScript"
   - "React"
-  - "入門記事"
 image: ./2019-07-31.png
 ---
 

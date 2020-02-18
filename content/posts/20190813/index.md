@@ -5,7 +5,6 @@ date: "2019-08-13"
 template: "post"
 draft: false
 tags:
-  - "入門記事"
   - "アルゴリズム"
 image: ./2019-08-13.png
 ---

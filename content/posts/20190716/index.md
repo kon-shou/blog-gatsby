@@ -6,8 +6,8 @@ template: "post"
 draft: false
 tags:
   - "Laravel"
-  - "API"
-  - "Test"
+  - "API開発"
+  - "テスト"
 image: ./002.png
 ---
 
