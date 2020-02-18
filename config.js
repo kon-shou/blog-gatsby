@@ -25,7 +25,7 @@ module.exports = {
   author: {
     name: 'kon-shou',
     photo: './static/image_me.jpg',
-    bio: '偏差値55くらいのフルスタックエンジニア',
+    bio: 'Web Developer',
     contacts: {
       twitter: 'kon_shou',
       github: 'kon-shou',
