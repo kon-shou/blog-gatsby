@@ -4,29 +4,22 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styles from './Feed.module.scss';
 
+const _ = require('lodash');
+
 const Feed = ({ edge }) => {
   const {
     node: {
       fields: { slug, tagSlugs },
-      frontmatter: {
-        date,
-        tags,
-        title,
-        description,
-        image: {
-          children: [{ fluid }],
-        },
-      },
+      frontmatter: { date, tags, title, description, image },
     },
   } = edge;
+
+  const fluid = _.get(image, 'children.0.fluid');
 
   return (
     <div className={styles['feed__item']} key={slug}>
       <div className={styles['feed__item-meta']}>
-        <time
-          className={styles['feed__item-meta-time']}
-          dateTime={moment(date).format('YYYY-MM-DD')}
-        >
+        <time className={styles['feed__item-meta-time']} dateTime={moment(date).format('YYYY-MM-DD')}>
           {moment(date).format('YYYY-MM-DD')}
         </time>
         <span className={styles['feed__item-meta-divider']} />
@@ -44,9 +37,11 @@ const Feed = ({ edge }) => {
           {title}
         </Link>
       </h2>
-      <Link className={styles['feed__item-img-a']} to={slug}>
-        <Img className={styles['feed__item-img']} fluid={fluid} />
-      </Link>
+      {fluid && (
+        <Link className={styles['feed__item-img-a']} to={slug}>
+          <Img className={styles['feed__item-img']} fluid={fluid} />
+        </Link>
+      )}
       <p className={styles['feed__item-description']}>{description}</p>
       <Link className={styles['feed__item-readmore']} to={slug}>
         Read

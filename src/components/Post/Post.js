@@ -8,7 +8,6 @@ import {
   TwitterIcon,
   PocketIcon,
 } from 'react-share';
-
 import Author from './Author';
 import Comments from './Comments';
 import Content from './Content';
@@ -16,15 +15,12 @@ import Meta from './Meta';
 import Tags from './Tags';
 import styles from './Post.module.scss';
 
+const _ = require('lodash');
+
 const Post = ({ post, postUrl }) => {
-  const {
-    tags,
-    title,
-    date,
-    image: {
-      children: [{ fluid }],
-    },
-  } = post.frontmatter;
+  const { tags, title, date, image } = post.frontmatter;
+
+  const fluid = _.get(image, 'children.0.fluid');
 
   const { html } = post;
   const { tagSlugs } = post.fields;

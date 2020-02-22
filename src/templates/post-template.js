@@ -5,12 +5,11 @@ import Post from '../components/Post';
 
 const PostTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle, url: siteUrl } = data.site.siteMetadata;
-
   const { title: postTitle, description: postDescription, image } = data.markdownRemark.frontmatter;
-
   const { slug } = data.markdownRemark.fields;
 
   const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
+  const publicUrl = image && image.publicURL;
 
   return (
     <Layout
@@ -18,7 +17,7 @@ const PostTemplate = ({ data }) => {
       ogpTitle={postTitle}
       description={metaDescription}
       type="article"
-      image={image.publicURL}
+      image={publicUrl}
     >
       <Post post={data.markdownRemark} postUrl={siteUrl + slug} />
     </Layout>

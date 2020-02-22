@@ -6,7 +6,6 @@ template: "post"
 draft: false
 tags:
   - "開発ツール"
-image: ./2020-02-18.jpg
 ---
 
 Ubuntu (macOS) と iPhone でmarkdownでメモを共有させたい人は下記のツールを組み合わせるのがオススメです。

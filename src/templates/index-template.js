@@ -11,26 +11,13 @@ const IndexTemplate = ({ data, pageContext }) => {
 
   const { publicURL } = data.file;
 
-  const {
-    currentPage,
-    hasNextPage,
-    hasPrevPage,
-    prevPagePath,
-    nextPagePath,
-  } = pageContext;
+  const { currentPage, hasNextPage, hasPrevPage, prevPagePath, nextPagePath } = pageContext;
 
   const { edges } = data.allMarkdownRemark;
-  const pageTitle =
-    currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
+  const pageTitle = currentPage > 0 ? `Posts - Page ${currentPage} - ${siteTitle}` : siteTitle;
 
   return (
-    <Layout
-      title={pageTitle}
-      ogpTitle={pageTitle}
-      description={siteSubtitle}
-      type="website"
-      image={publicURL}
-    >
+    <Layout title={pageTitle} ogpTitle={pageTitle} description={siteSubtitle} type="website" image={publicURL}>
       <Sidebar isIndex />
       <Page>
         {edges.map((edge, index) => (
