@@ -3,7 +3,7 @@
 
 .feed {
   &__item {
-    @include margin-bottom(1.25);
+    @include margin-bottom(2.5);
 
     &:last-child {
       @include margin-bottom(0.5);
@@ -33,6 +33,7 @@
     }
 
     &-img {
+      border: solid 1px #000000;
       border-radius: 15px;
       max-width: 400px;
       max-height: 200px;
@@ -41,7 +42,7 @@
     &-description {
       font-size: $typographic-base-font-size;
       @include line-height(1);
-      @include margin-bottom(0.75);
+      @include margin-bottom(0.2);
     }
 
     &-meta {
