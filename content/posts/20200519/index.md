@@ -5,30 +5,29 @@ date: "2020-05-19"
 template: "post"
 draft: false
 tags:
-  - "開発ツール"
+  - "NoSQL"
+  - "Firebase"
+  - "Amplify"
+  - "GraphQL"
 ---
 
 **注：この文章はNoSQLとかAmplifyとかFirebaseも実際に使ってない人間がドキュメントと伝聞を元に書いてるので、たぶん間違いが含まれます。疑って読んでください。**
 
-0. [NoSQLとRDSのデータへのアプローチの違い](#NoSQLとRDSのデータへのアプローチの違い)
-0. [安くて楽したいからサーバーレスを使うのに、NoSQLが辛い問題](#安くて楽したいからサーバーレスを使うのに、NoSQLが辛い問題)
-0. [FirebaseとAmplifyでのNoSQLへのアプローチ](#FirebaseとAmplifyでのNoSQLへのアプローチ)
-0. [FirebaseのNoSQL(Firestore)に対するアプローチ](#FirebaseのNoSQL(Firestore)に対するアプローチ)
-0. [AmplifyのNoSQL(DynamoDB)に対するアプローチ](#AmplifyのNoSQL(DynamoDB)に対するアプローチ)
-0. [最後に](#最後に)
-0. [参考](#参考)
-
 # NoSQLとRDSのデータへのアプローチの違い
 
-[DynamoDBでリレーショナルデータをモデル化するための最初のステップ](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-modeling-nosql.html)
+下記の文章は、NoSQLのおける設計をわかりやすく説明している。
 
-というドキュメントの下記の文章は、NoSQLのおける設計をわかりやすく説明している。
+> NoSQL 設計では、RDBMS 設計とは異なる考え方が必要です。RDBMS の場合は、アクセスパターンを考慮せずに正規化されたデータモデルを作成できます。その後、新しい質問とクエリの要件が発生したら、そのデータモデルを拡張することができます。Amazon DynamoDB の場合は対照的に、答えが必要な質問が分かるまで、スキーマの設計を開始しないでください。ビジネス上の問題とアプリケーションのユースケースを理解することが極めて重要です。
 
-> 「NoSQL 設計では、RDBMS 設計とは異なる考え方が必要です。RDBMS の場合は、アクセスパターンを考慮せずに正規化されたデータモデルを作成できます。その後、新しい質問とクエリの要件が発生したら、そのデータモデルを拡張することができます。Amazon DynamoDB の場合は対照的に、答えが必要な質問が分かるまで、スキーマの設計を開始しないでください。ビジネス上の問題とアプリケーションのユースケースを理解することが極めて重要です。」
+<div style="text-align: right">
+(<a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-modeling-nosql.html">
+DynamoDBでリレーショナルデータをモデル化するための最初のステップ
+</a>)
+</div>
 
 RDSにおいて、SQLは優等生である。
 
-データが存在して「あれとこれを取得して、それをいい感じに見やすくして持ってきて」と言えば、そのとおりに持ってきてくれた。
+データが存在していれば「あれとこれを取得して、それをいい感じに見やすくして持ってきて」と言えば、そのとおりに持ってきてくれた。
 
 そのため「将来のビジネス要件が不確定な状態でも、とりあえずデータを入れておき、要件が確定した段階でSQLで必要なデータを取ってくる」という手法が可能だった。
 
@@ -40,8 +39,6 @@ RDSにおいて、SQLは優等生である。
 
 なぜ、そんな一見ではRDSの下位互換のようにも見えることになっているかの理由は、NoSQLがRDSのもつ高い処理コストを解決しているため。
 
-[DynamoDBでリレーショナルデータをモデル化するためのベストプラクティス](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-relational-modeling.html)
-
 > この種のワンタイムクエリは、データにアクセスするための柔軟な API を提供しますが、大量の処理が必要です。
 
 > RDBMS システムを減速させるもう 1 つの要素として、ACID 準拠のトランザクションフレームワークをサポートする必要がある点があります。
@@ -50,7 +47,13 @@ RDSにおいて、SQLは優等生である。
 
 > このため、高トラフィックのクエリに対して低レイテンシーの応答が必要な場合は、NoSQL システムを利用すると、一般的に技術的および経済的な効果がもたらされます。
 
-処理コストを抑えるために、基本的にはハッシュキーによるデータ取得を主眼において、ソートとか重いことをしたいなら、頑張ってね★ という具合になる。
+<div style="text-align: right">
+(<a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-relational-modeling.html">
+DynamoDBでリレーショナルデータをモデル化するためのベストプラクティス
+</a>)
+</div>
+
+処理コストを抑えるために、NoSQLでは基本的にはハッシュキーによるデータ取得を主眼において、ソートとか重いことをしたいなら、まぁ面倒くさいけど色々と頑張ってね★ という具合になる。
 
 そのためNoSQLに適してるデータの種類は「トランザクションデータ」とか「ユーザーの行動履歴」とかいう「ただあるがままを表示する」ようなものに向いている。
 
@@ -60,9 +63,13 @@ RDSにおいて、SQLは優等生である。
 
 じゃあNoSQLでスキーマの設計はどうしたら良いの？という疑問に対して、下記のような文章が書かれている。
 
-[DynamoDB に合わせた NoSQL 設計](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-general-nosql-design.html)
-
 > DynamoDB の場合は対照的に、答えが必要な質問が分かるまで、スキーマの設計を開始しないでください。ビジネス上の問題とアプリケーションのユースケースを理解することが不可欠です。
+
+<div style="text-align: right">
+(<a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/bp-general-nosql-design.html">
+DynamoDB に合わせた NoSQL 設計
+</a>)
+</div>
 
 「いやいやいや、そんな答えがわかった上でデータ入れることばっかじゃないし！こちとらスタートアップなんじゃ、とりあえず後で機能を考えるから、データだけ溜めさせてくれや。」が通じない。
 
@@ -76,7 +83,7 @@ RDSだと正規化した上でデータを収めておけば、SQLの柔軟さ�
 
 # FirebaseとAmplifyでのNoSQLへのアプローチ
 
-以上が、NoSQLについての机上のお話で、じゃあ実際に作るとなるとどうなの？ということで、たぶんメジャーなものでFirebaseとAmplifyがあがる。
+以上が、NoSQLについての机上のお話で「じゃあ実際に作るとなるとどうなの？」ということで、たぶんメジャーなものでFirebaseとAmplifyがあげられる。
 
 FirebaseはFirestoreで、AmplifyはDynamoDB。
 
@@ -103,7 +110,11 @@ FirebaseにおけるFirestoreへのデータの読み書きは、かなりフリ
 db.collection('cities').doc('LA').set(data);
 ```
 
-[Cloud Firestore にデータを追加する](https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ja) から引用
+<div style="text-align: right">
+(<a href="https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ja">
+Cloud Firestore にデータを追加する
+</a>)
+</div>
 
 読み込み
 
@@ -116,15 +127,21 @@ db.collection("posts")
 }
 ```
 
-[Cloud Firestoreの勘所 パート2 — データ設計](https://medium.com/google-cloud-jp/firestore2-920ac799345c) から引用
+<div style="text-align: right">
+(<a href="https://medium.com/google-cloud-jp/firestore2-920ac799345c">
+Cloud Firestoreの勘所 パート2 — データ設計
+</a>)
+</div>
 
 このままだとあまりに自由であるため、設計者が想定してしないデータ構造の書き込みが実装される可能性がある。
 
-それはセキュリティルールというもので防ぐ、というのがFirestoreのやり方らしい。
+そのような書き込みはセキュリティルールで防ぐ、というのがFirestoreのやり方らしい。
 
-そしてよく聞くことが、そのルールの設定がしんどいというお話。
+そして聞くところによると、そのルールの設定がしんどいというお話。
 
-たぶん、ダックタイピングと似たような話で自由さとか実装速度とかとトレードオフなんだろうという気がするけど、根っからペチパーで「タイプヒンティング最高だぜ」という自分には向かないんだろうなと思ってる。
+たぶん、ダックタイピングと似たような話で自由さとか実装速度とかとトレードオフなんだろうという気がする。
+
+ただ自分は根っからペチパーで「タイプヒンティング最高だぜ」というタイプなので向かないんだろうなと思ってる。
 
 # AmplifyのNoSQL(DynamoDB)に対するアプローチ
 
@@ -132,7 +149,7 @@ db.collection("posts")
 
 スキーマを下記のように定義すると
 
-```
+```graphql
 type Customer @model
 @key(name: "byRepresentative", fields: ["accountRepresentativeID", "id"]) {
     id: ID!
@@ -144,7 +161,11 @@ type Customer @model
 }
 ```
 
-[Data access patterns](https://docs.amplify.aws/cli/graphql-transformer/dataaccess)
+<div style="text-align: right">
+(<a href="https://docs.amplify.aws/cli/graphql-transformer/dataaccess">
+Data access patterns
+</a>)
+</div>
 
 下記のようなクエリが自動生成される。
 
@@ -191,15 +212,15 @@ export const getCustomer = /* GraphQL */ `
 `;
 ```
 
-フロントのコードで、この `GetCustomer` を呼び出すという流れになる。
+そしてフロントのコードで、この `GetCustomer` を呼び出すという流れになる。
 
-これは上述の「答えが必要な質問が分かるまで、スキーマの設計を開始しないでください」を典型的に守っていると思う。
+これは上述の「答えが必要な質問が分かるまで、スキーマの設計を開始しないでください」を典型的に守っている気がする。
 
 スキーマには「どのキーでorderが発行されるのか」「どのモデルがリレーションを持つのか」をあらかじめ定義する必要があり、それはアクセスパターンにほかならない。
 
 そしてこのスキーマの遵守は、GraphQLによって担保される。
 
-例えば、GraphQLによるUpdateは、`GetCustomer` と同様に `updateOrder` が生成され、それを通して行うことになるからだ。そこで更新可能なプロパティは制限される。
+例えば、GraphQLによるUpdateは、`GetCustomer` と同様に `updateOrder` が生成され、それを通して行うことになるからだ。そこで更新可能なプロパティは当然制限される。
 
 これは「NoSQLのデータ構造の柔軟性を損なう」とも取れると思うが、そこまでの柔軟性を求めていないケースにはメリットが大きいし、だいたいのWebアプリはそうなんじゃないかと思う。
 
