@@ -24,10 +24,6 @@
   }
 
   &__body {
-    & h1 {
-      font-size: $typographic-base-font-size * 1.7;
-    }
-
     & figure {
       @include margin-bottom(1);
     }
