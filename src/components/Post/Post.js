@@ -28,7 +28,7 @@ const Post = ({ post, postUrl }) => {
   return (
     <div className={styles['post']}>
       <Link className={styles['post__home-button']} to="/">
-        ブログ記事一覧
+        記事一覧
       </Link>
 
       <div className={styles['post__sns-buttons']}>
