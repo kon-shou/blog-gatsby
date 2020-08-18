@@ -69,11 +69,8 @@
           &:focus {
             color: $color-primary;
           }
-
         }
-
       }
-
     }
 
     &-tags {
@@ -113,9 +110,7 @@
 
 @include breakpoint-md {
   .feed {
-
     &__item {
-
       &-img-a {
         max-width: 500px;
         max-height: 250px;

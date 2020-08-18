@@ -22,7 +22,6 @@ const Author = ({ title, subtitle, isIndex, fixed }) => (
         </Link>
       </h2>
     )}
-    <p className={styles['author__subtitle']}>{subtitle}</p>
   </div>
 );
 
